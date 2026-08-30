@@ -27,15 +27,19 @@
 
   <!-- Basic styling for loading screen -->
   <style>
-    body {
+    html, body {
       margin: 0;
+      width: 100%;
+      min-height: 100%;
       font-family: "Segoe UI", Arial, sans-serif;
       background: #fffaf0;
+      color: #2e7d32;
+    }
+    body {
       display: flex;
       align-items: center;
       justify-content: center;
       min-height: 100vh;
-      color: #2e7d32;
     }
     #loading {
       text-align: center;
@@ -45,6 +49,8 @@
       align-items: center;
       gap: 18px;
       padding: 24px;
+      opacity: 1;
+      transition: opacity 0.35s ease;
     }
     #loading img {
       width: 140px;
@@ -66,15 +72,31 @@
   </style>
 </head>
 <body>
-<!-- Loading screen before Flutter app initializes -->
-<div id="loading">
-  <img src="assets/New_Logo.jpg" alt="Ardaita NGO logo">
-  <p>Loading Ardaita website...</p>
-</div>
+  <div id="loading" aria-live="polite">
+    <img src="assets/New_Logo.jpg" alt="Ardaita NGO logo">
+    <p>Loading Ardaita website...</p>
+  </div>
 
-<!-- Runtime API config for Flutter web (optional) -->
-<script src="api_config.js"></script>
-<!-- Flutter bootstrap script -->
-<script src="flutter_bootstrap.js" async></script>
+  <script src="api_config.js"></script>
+  <script>
+    window.addEventListener('flutter-first-frame', function () {
+      const loading = document.getElementById('loading');
+      if (!loading) return;
+      loading.style.opacity = '0';
+      setTimeout(() => loading.remove(), 350);
+    });
+
+    window.addEventListener('load', function () {
+      const loading = document.getElementById('loading');
+      if (!loading) return;
+      setTimeout(function () {
+        if (document.querySelector('flutter-view')) {
+          loading.style.opacity = '0';
+          setTimeout(() => loading.remove(), 350);
+        }
+      }, 15000);
+    });
+  </script>
+  <script src="flutter_bootstrap.js" async></script>
 </body>
 </html>
