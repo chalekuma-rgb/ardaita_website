@@ -23,18 +23,19 @@
   <!-- Manifest -->
   <link rel="manifest" href="manifest.json">
 
-  <title>NGO Website</title>
+  <title>Ardaita Unity and Development Association</title>
 
   <!-- Basic styling for loading screen -->
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f5f5f5;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #fffaf0;
       display: flex;
       align-items: center;
       justify-content: center;
-      height: 100vh;
+      min-height: 100vh;
+      color: #2e7d32;
     }
     #loading {
       text-align: center;
@@ -42,23 +43,25 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 20px;
+      gap: 18px;
+      padding: 24px;
     }
     #loading img {
       width: 140px;
       height: 140px;
       object-fit: cover;
       border-radius: 50%;
-      background: #f5f5f5;
-      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+      background: #ffffff;
+      box-shadow: 0 12px 24px rgba(46, 125, 50, 0.18);
       display: block;
     }
     #loading p {
       margin: 0;
-      font-size: 30px;
+      font-size: clamp(1.3rem, 3vw, 2rem);
       font-weight: 700;
       color: #2e7d32;
       line-height: 1.2;
+      letter-spacing: 0.04em;
     }
   </style>
 </head>
@@ -66,7 +69,7 @@
 <!-- Loading screen before Flutter app initializes -->
 <div id="loading">
   <img src="assets/New_Logo.jpg" alt="Ardaita NGO logo">
-  <p>Loading Ardaita NGO Website...</p>
+  <p>Loading Ardaita website...</p>
 </div>
 
 <!-- Runtime API config for Flutter web (optional) -->
