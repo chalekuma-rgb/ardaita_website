@@ -16,6 +16,7 @@ Future<void> main() async {
   );
   runApp(const MyTrendingWebApp());
 }
+
 final supabase = Supabase.instance.client;
 
 class MyTrendingWebApp extends StatelessWidget {
@@ -2348,12 +2349,12 @@ class GalleryPage extends StatelessWidget {
                           child: Image.asset(
                             imagePath,
                             fit: BoxFit.contain,
-                            width: screenWidth * 0.75,
-                            height: screenHeight * 0.62,
+                            width: double.infinity,
+                            height: double.infinity,
                             errorBuilder: (context, error, stackTrace) {
                               return SizedBox(
-                                width: screenWidth * 0.75,
-                                height: screenHeight * 0.62,
+                                width: double.infinity,
+                                height: double.infinity,
                                 child: const Center(
                                   child: Icon(
                                     Icons.broken_image_outlined,
