@@ -6,7 +6,7 @@ The error "401" means your API key is invalid or missing. The current key in the
 ## Solution: Get Your Real API Key
 
 ### Step 1: Open Supabase Dashboard
-Go to: https://supabase.com/dashboard/project/eukkhlbgmcnhstdfmeea
+Go to: https://supabase.com/dashboard/project/ukgrkpslqgggnuvfqzbb
 
 ### Step 2: Navigate to API Settings
 1. Click the **Settings** icon (gear icon ⚙️) in the left sidebar
@@ -25,7 +25,7 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV1a2tobGJ
 ```
 
 ### Step 4: Update the Code
-1. Open: `lib/backend/email_service.dart`
+1. Open: `lib/main.dart`
 2. Find line 7-8:
 ```dart
   static const String _supabaseApiKey =
@@ -52,7 +52,7 @@ The final result should look like:
 If you still get 401 after adding the correct API key, check:
 
 1. **Database Tables Exist**: Did you run the SQL scripts from SUPABASE_SETUP.md to create the tables?
-   - Table names must be: `contact_submissions` and `volunteer_applications`
+   - Table names must be: `contact_messages` and `volunteer_applications`
    - Must be lowercase with underscores
 
 2. **Row Level Security (RLS)**: 
@@ -60,8 +60,8 @@ If you still get 401 after adding the correct API key, check:
    - For each table, check that RLS policies allow public inserts
    - Run this SQL if needed:
    ```sql
-   ALTER TABLE contact_submissions ENABLE ROW LEVEL SECURITY;
-   CREATE POLICY "Allow public inserts" ON contact_submissions
+   ALTER TABLE contact_messages ENABLE ROW LEVEL SECURITY;
+   CREATE POLICY "Allow public inserts" ON contact_messages
      FOR INSERT WITH CHECK (true);
    ```
 

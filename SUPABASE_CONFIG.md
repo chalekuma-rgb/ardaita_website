@@ -6,7 +6,7 @@ This document explains how to configure the Supabase backend for the Ardaita web
 
 ### 1. Get Your Supabase API Key
 
-1. Go to: https://supabase.com/dashboard/project/eukkhlbgmcnhstdfmeea
+1. Go to: https://supabase.com/dashboard/project/ukgrkpslqgggnuvfqzbb
 2. Click **Settings** (gear icon) in the left sidebar
 3. Click **API** in the left menu
 4. Copy the **anon public** key from the "Project API keys" section
@@ -14,7 +14,7 @@ This document explains how to configure the Supabase backend for the Ardaita web
 
 ### 2. Update the Email Service
 
-In `lib/backend/email_service.dart`, replace the placeholder:
+In `lib/main.dart`, replace the placeholder:
 
 ```dart
 static const String _supabaseApiKey = 'your-actual-api-key-here';
@@ -22,7 +22,7 @@ static const String _supabaseApiKey = 'your-actual-api-key-here';
 
 ### 3. Set Up Database Tables
 
-Go to https://supabase.com/dashboard/project/eukkhlbgmcnhstdfmeea/sql/new
+Go to https://supabase.com/dashboard/project/ukgrkpslqgggnuvfqzbb/sql/new
 
 Paste and run both SQL scripts from `SUPABASE_SETUP.md`:
 - Contact Submissions Table
@@ -32,7 +32,7 @@ Paste and run both SQL scripts from `SUPABASE_SETUP.md`:
 
 1. Run the Flutter app: `flutter run -d chrome`
 2. Fill out and submit a contact form
-3. Check the Supabase dashboard → **Table Editor** → **contact_submissions** to see your submission
+3. Check the Supabase dashboard → **Table Editor** → **contact_messages** to see your submission
 
 ## How It Works
 
@@ -42,7 +42,7 @@ Paste and run both SQL scripts from `SUPABASE_SETUP.md`:
 
 ## Database Tables
 
-### contact_submissions
+### contact_messages
 - `id` - Auto-generated primary key
 - `created_at` - Timestamp of submission
 - `full_name` - User's full name

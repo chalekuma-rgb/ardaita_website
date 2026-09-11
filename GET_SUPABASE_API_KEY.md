@@ -6,12 +6,12 @@ Your API key is currently empty (`''`), which is why you're getting a 401 error.
 ## Solution - Get Your Real API Key
 
 ### Step 1: Open Supabase Dashboard
-Click this link: **https://supabase.com/dashboard/project/eukkhlbgmcnhstdfmeea**
+Click this link: **https://supabase.com/dashboard/project/ukgrkpslqgggnuvfqzbb**
 
 Or manually:
 - Go to https://supabase.com
 - Log in with your account
-- Find your project "eukkhlbgmcnhstdfmeea"
+- Find your project "ukgrkpslqgggnuvfqzbb"
 - Click to open it
 
 ### Step 2: Navigate to API Settings
@@ -40,7 +40,7 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV1a2tobGJ
 It's typically 200-300+ characters long.
 
 ### Step 6: Update the Dart Code
-1. Open the file: `lib/backend/email_service.dart`
+1. Open the file: `lib/main.dart`
 
 2. Find this line (around line 9):
 ```dart
@@ -72,7 +72,7 @@ It's typically 200-300+ characters long.
 If you get past 401 but form still fails:
 1. Go to Supabase → **Database** → **Tables** 
 2. Verify these tables exist:
-   - `contact_submissions`
+   - `contact_messages`
    - `volunteer_applications`
 
 If they don't exist, run the SQL from `SUPABASE_SETUP.md`
@@ -89,6 +89,6 @@ Check your browser console for more details:
 
 **Need the actual key from your Supabase project?**
 If you need help finding it:
-1. Your project reference is: `eukkhlbgmcnhstdfmeea`
+1. Your project reference is: `ukgrkpslqgggnuvfqzbb`
 2. The key should be in: Settings → API → Project API Keys
 3. Copy the "anon public" key (the green one)

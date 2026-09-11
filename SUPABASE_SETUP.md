@@ -4,16 +4,16 @@ This guide will help you set up Supabase for handling form submissions and sendi
 
 ## 1. Project Information
 
-- **Project URL**: https://eukkhlbgmcnhstdfmeea.supabase.co
-- **Dashboard**: https://supabase.com/dashboard/project/eukkhlbgmcnhstdfmeea
+- **Project URL**: https://ukgrkpslqgggnuvfqzbb.supabase.co
+- **Dashboard**: https://supabase.com/dashboard/project/ukgrkpslqgggnuvfqzbb
 
 ## 2. Get Your API Key
 
-1. Go to the [Supabase Dashboard](https://supabase.com/dashboard/project/eukkhlbgmcnhstdfmeea)
+1. Go to the [Supabase Dashboard](https://supabase.com/dashboard/project/ukgrkpslqgggnuvfqzbb)
 2. Click on **Settings** in the sidebar (gear icon)
 3. Click on **API** in the left menu
 4. Under **Project API keys**, copy the **anon public** key
-5. Replace the placeholder in `lib/backend/email_service.dart` with this key
+5. Replace the placeholder in `lib/main.dart` with this key
 
 ## 3. Create Database Tables
 
@@ -22,7 +22,7 @@ Run these SQL commands in the Supabase SQL Editor to create the necessary tables
 ### Contact Submissions Table
 
 ```sql
-CREATE TABLE contact_submissions (
+CREATE TABLE contact_messages (
   id BIGSERIAL PRIMARY KEY,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   full_name TEXT NOT NULL,
@@ -30,9 +30,9 @@ CREATE TABLE contact_submissions (
   message TEXT NOT NULL
 );
 
-ALTER TABLE contact_submissions ENABLE ROW LEVEL SECURITY;
+ALTER TABLE contact_messages ENABLE ROW LEVEL SECURITY;
 
-CREATE POLICY "Allow public inserts" ON contact_submissions
+CREATE POLICY "Allow public inserts" ON contact_messages
   FOR INSERT
   WITH CHECK (true);
 ```
@@ -69,7 +69,7 @@ npm install -g supabase
 supabase login
 
 # Link to your project
-supabase link --project-ref eukkhlbgmcnhstdfmeea
+supabase link --project-ref ukgrkpslqgggnuvfqzbb
 ```
 
 ### Step 2: Create send-contact-email Function
@@ -287,12 +287,12 @@ serve(async (req) => {
 You can set up webhooks to trigger email notifications:
 
 1. Go to **Database** → **Webhooks**
-2. Create a new webhook for `contact_submissions` table
+2. Create a new webhook for `contact_messages` table
 3. Set it to call an external service when new rows are inserted
 
 ## 7. Update Email Service
 
-Update the API key in `lib/backend/email_service.dart` with your actual Supabase anon public key:
+Update the API key in `lib/main.dart` with your actual Supabase anon public key:
 
 ```dart
 static const String _supabaseApiKey = 'your-supabase-anon-public-key';

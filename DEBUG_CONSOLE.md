@@ -23,8 +23,8 @@ Fill out the contact form and click Submit.
 You should see messages like:
 
 ```
-[EmailService] Sending to: https://eukkhlbgmcnhstdfmeea.supabase.co/rest/v1/contact_submissions
-[EmailService] Table: contact_submissions
+[EmailService] Sending to: https://ukgrkpslqgggnuvfqzbb.supabase.co/rest/v1/contact_messages
+[EmailService] Table: contact_messages
 [EmailService] Payload: {fullName: "John Doe", email: "john@example.com", message: "Hello"}
 [EmailService] ✗ Error: Authentication failed (401). Your API key may be invalid...
 ```
@@ -33,7 +33,7 @@ You should see messages like:
 
 ### ✓ Success Message
 ```
-[EmailService] ✓ Submission sent successfully to contact_submissions
+[EmailService] ✓ Submission sent successfully to contact_messages
 ```
 Everything worked! Check Supabase dashboard to see your data.
 
@@ -41,7 +41,7 @@ Everything worked! Check Supabase dashboard to see your data.
 ```
 [EmailService] ✗ Exception: Supabase API key is not configured...
 ```
-**Solution**: Add your API key to `lib/backend/email_service.dart`
+**Solution**: Add your API key to `lib/main.dart`
 See `GET_SUPABASE_API_KEY.md`
 
 ### ✗ 401 - Authentication Failed
@@ -55,12 +55,12 @@ See `GET_SUPABASE_API_KEY.md`
 
 ### ✗ 404 - Table Not Found
 ```
-[EmailService] ✗ Error: Table not found (404). Check that contact_submissions table exists...
+[EmailService] ✗ Error: Table not found (404). Check that contact_messages table exists...
 ```
 **Solution**: 
 1. Open Supabase dashboard
 2. Go to Database → Tables
-3. Verify the table exists: `contact_submissions` or `volunteer_applications`
+3. Verify the table exists: `contact_messages` or `volunteer_applications`
 4. If missing, run the SQL from `SUPABASE_SETUP.md`
 
 ### ✗ 400 - Bad Request
@@ -87,7 +87,7 @@ See `GET_SUPABASE_API_KEY.md`
 - [ ] API key is complete and wasn't truncated
 - [ ] No spaces before or after the key
 - [ ] Used "anon public" key, not "service_role" key
-- [ ] Database tables exist (`contact_submissions`, `volunteer_applications`)
+- [ ] Database tables exist (`contact_messages`, `volunteer_applications`)
 - [ ] Row Level Security (RLS) policies allow public inserts
 - [ ] Supabase project is active (not paused)
 
@@ -95,7 +95,7 @@ See `GET_SUPABASE_API_KEY.md`
 
 Sometimes people accidentally copy only part of the key. Here's how to verify:
 
-1. Open Supabase Dashboard: https://supabase.com/dashboard/project/eukkhlbgmcnhstdfmeea
+1. Open Supabase Dashboard: https://supabase.com/dashboard/project/ukgrkpslqgggnuvfqzbb
 2. Settings → API
 3. Right-click the copy button next to "anon public"
 4. Select "Inspect" to see the full key before copying

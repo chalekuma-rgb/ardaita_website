@@ -4,13 +4,19 @@ import 'dart:html' as html;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'form_validators.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Supabase.initialize(
+    url: 'https://ukgrkpslqgggnuvfqzbb.supabase.co',
+    publishableKey: 'sb_publishable_AxBmE12nVkp02XFZqkiRuw_KsQTnh9D',
+  );
   runApp(const MyTrendingWebApp());
 }
+final supabase = Supabase.instance.client;
 
 class MyTrendingWebApp extends StatelessWidget {
   const MyTrendingWebApp({super.key});
@@ -2536,19 +2542,11 @@ class _ContactUsPageState extends State<ContactUsPage> {
     });
 
     try {
-      final mailtoUri = Uri(
-        scheme: 'mailto',
-        path: 'info@ardaita-asca.org',
-        query:
-            'subject=${Uri.encodeComponent('Contact request from ${_nameController.text.trim()}')}'
-            '&body=${Uri.encodeComponent('Name: ${_nameController.text.trim()}\n'
-            'Email: ${_emailController.text.trim()}\n\n'
-            '${_messageController.text.trim()}')}',
-      );
-      final opened = await launchUrl(mailtoUri);
-      if (!opened) {
-        throw StateError('Unable to open an email application.');
-      }
+      await supabase.from('contact_messages').insert({
+        'full_name': _nameController.text.trim(),
+        'email': _emailController.text.trim(),
+        'message': _messageController.text.trim(),
+      });
 
       if (!mounted) {
         return;
@@ -2557,7 +2555,7 @@ class _ContactUsPageState extends State<ContactUsPage> {
       setState(() {
         _isSubmitting = false;
         _submissionSucceeded = true;
-        _feedbackMessage = 'Your email draft is ready to send.';
+        _feedbackMessage = 'Your message has been sent successfully.';
       });
 
       _formKey.currentState?.reset();
@@ -2924,20 +2922,12 @@ class _BecomeVolunteerPageState extends State<BecomeVolunteerPage> {
     });
 
     try {
-      final mailtoUri = Uri(
-        scheme: 'mailto',
-        path: 'info@ardaitaunity.org',
-        query:
-            'subject=${Uri.encodeComponent('Volunteer application from ${_nameController.text.trim()}')}'
-            '&body=${Uri.encodeComponent('Name: ${_nameController.text.trim()}\n'
-            'Email: ${_emailController.text.trim()}\n'
-            'Initiative: ${selectedInitiative!.trim()}\n\n'
-            'Motivation:\n${_motivationController.text.trim()}')}',
-      );
-      final opened = await launchUrl(mailtoUri);
-      if (!opened) {
-        throw StateError('Unable to open an email application.');
-      }
+      await supabase.from('volunteer_applications').insert({
+        'full_name': _nameController.text.trim(),
+        'email': _emailController.text.trim(),
+        'initiative': selectedInitiative!.trim(),
+        'motivation': _motivationController.text.trim(),
+      });
 
       if (!mounted) {
         return;
@@ -2946,7 +2936,8 @@ class _BecomeVolunteerPageState extends State<BecomeVolunteerPage> {
       setState(() {
         _isSubmitting = false;
         _submissionSucceeded = true;
-        _feedbackMessage = 'Your volunteer application draft is ready to send.';
+        _feedbackMessage =
+            'Your volunteer application has been submitted successfully.';
         selectedInitiative = null;
       });
 
